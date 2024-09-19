@@ -8,6 +8,7 @@
 #include <pthread.h>
 #include <sys/time.h>
 #include <limits.h>
+#include <errno.h>
 
 typedef enum e_opcode
 {
@@ -55,7 +56,11 @@ struct s_table
 };
 
 void    error_exit(const char *error);
+
 void    parse_input(t_table *table, char **av);
+
 void    *safe_malloc(size_t bytes);
+void    safe_mutex_handle(t_mtx *mutex, t_opcode opcode);
+void    safe_thread_handle(pthread_t *thread, void *(*foo)(void *), void *data, t_opcode opcode);
 
 #endif
